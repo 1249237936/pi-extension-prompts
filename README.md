@@ -11,6 +11,8 @@ result stays reviewable and auditable.
 | Prompt | What it builds |
 |---|---|
 | [`prompts/youtube-summary.md`](prompts/youtube-summary.md) | A Pi package that turns a YouTube URL into a summary of the video's full transcript. Five-step retrieval ladder (cache → public captions → browser transcript panel → audio download + local STT → browser audio capture), JSONL subprocess protocol, and tests that enforce its own security claims. |
+| [`prompts/pi-vim.md`](prompts/pi-vim.md) | Vim-style modal editing for Pi's prompt editor, as an extension that decorates the editor Pi already has. Splits a pure, unit-testable NORMAL-mode engine from a thin controller that drives the real editor through its TS-accessible ABI, preserving folded pastes, undo grouping, and dot-repeat. |
+| [`prompts/claude-code-theme.md`](prompts/claude-code-theme.md) | A Claude Code-style terminal presentation for Pi: a theme file plus a presentation-only extension adding an animated mascot header, a `❯` prompt, a footer status bar, and an effort label on the editor border that yields to another extension's editor. |
 
 ## How these prompts are written
 
