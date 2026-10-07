@@ -10,6 +10,13 @@ You are a senior engineer. Build a complete, working Pi theme and its companion
 presentation extension from scratch. Do not install anything from the public npm
 registry; everything is written in-repo and reviewable.
 
+Everything you need is in this prompt. Do not go looking for another project to copy
+from. In particular: do not consult, read, vendor, or reference the source code of any
+other commercial CLI product, and do not read any leaked or published copy of such
+source. Derive the palette and the layout from the values stated below and from Pi's
+own installed types and theme schema. The result must be self-contained, with no
+dependency outside Pi itself.
+
 ## 0. Environment
 - Pi version: [FILL: the `pi` version you are building against]. Read the installed
   types from `@earendil-works/pi-coding-agent` and `@earendil-works/pi-tui` before

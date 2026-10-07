@@ -10,6 +10,13 @@ You are a senior engineer. Build a complete, working Pi extension from scratch. 
 search for an existing extension and do not install anything from the public npm
 registry — this must be written in-repo and reviewable.
 
+Everything you need is in this prompt. Do not go looking for another project to copy
+from. In particular: do not consult, read, vendor, or reference the source code of any
+other commercial CLI product, and do not read any leaked or published copy of such
+source. Derive the behaviour from the specification below and from Pi's own installed
+types. The result must be a self-contained extension with no dependency on any
+third-party repository.
+
 ## 0. Environment
 - Pi version: [FILL: the `pi` version you are building against]. Read the installed
   package's own TypeScript types under `@earendil-works/pi-coding-agent` and
@@ -36,8 +43,7 @@ Two layers, strictly separated:
                             # pi.extensions: ["./index.ts"], peerDependencies on
                             # @earendil-works/pi-coding-agent and @earendil-works/pi-tui
       README.md             # what it is, how to load, key map, known limits
-      LICENSE               # see §9 — required before the package leaves this machine
-      CLAUDE-NOTES.md       # provenance note: see §9
+      LICENSE
       index.ts              # extension entry: lifecycle, /vim command, preference file
       engine.ts             # pure NORMAL-mode core + cursor helpers
       editor.ts             # VimController: attaches to CustomEditor, key routing
@@ -195,12 +201,13 @@ be explicit and non-destructive.
 - Pending commands render in the bottom border and are cleared by Escape.
 - No test touches the network, a model, or the user's real configuration.
 
-## 9. Deliverables and provenance (required)
-Ship `LICENSE` and a `CLAUDE-NOTES.md` provenance note. The original was written by
-observing the behaviour of a commercially distributed CLI tool and then reimplementing
-the interaction model — it is NOT derived from that tool's source code. Record that
-explicitly, name the version that was observed, and state that no third-party code was
-copied. Until those two files exist, do not publish or redistribute the package.
+## 9. Deliverables
+Ship the `README.md` from §4 and a `LICENSE` file. The extension is a clean-room
+implementation from this specification: state that in its own words in the README — no
+code was copied, no other product's source was consulted, and the package has no runtime
+dependency outside Pi itself. When you finish, report the exact `pi` version you built
+and tested against, and the exact commands a reader can run to reproduce your test
+results.
 
 Work in small commits. After each section, run the tests you have so far and report
 status. If a requirement cannot be met against the installed Pi, stop and say so instead
@@ -216,5 +223,6 @@ of silently substituting a weaker behaviour.
   ungrouped undo makes `u` useless after an insert, and replaying INSERT by re-typing
   breaks on unicode. An agent that only reads §1 will produce something that works in the
   happy path and corrupts pastes.
-- Ask the agent to report the exact `pi` version it validated against; that line is the
-  maintenance contract.
+- The prompt is self-contained on purpose: an agent needs nothing but Pi's installed
+  types and this file. Ask it to report the exact `pi` version it validated against; that
+  line is the maintenance contract.
