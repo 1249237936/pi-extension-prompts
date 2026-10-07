@@ -1,6 +1,6 @@
-# BUILD PROMPT — Rebuild "pi-youtube-summary" on a self-hosted DeepSeek + Pi agent
+# BUILD PROMPT — Rebuild "pi-youtube-summary" for Pi
 
-Copy everything between the `===BEGIN PROMPT===` markers into your company Pi agent.
+Copy everything between the `===BEGIN PROMPT===` markers into your Pi agent.
 Fill the `[FILL]` items first. The prompt is self-contained: the agent has never seen
 the original package and must not need it.
 
@@ -12,9 +12,9 @@ registry — this must be written in-repo and reviewable.
 
 ## 0. Environment
 - OS target: [FILL: macOS 15 / Ubuntu 22.04 / other]. If not macOS, see §9.
-- LLM: self-hosted DeepSeek via an OpenAI-compatible endpoint at [FILL: base URL].
-  No cloud API may be called by this package; the agent harness already routes the
-  model. Assume a context window of at least 128k tokens.
+- LLM: an OpenAI-compatible endpoint at [FILL: base URL]. This package never calls a
+  model API itself — the agent harness already routes the model — so any compatible
+  endpoint works. Assume a context window of at least 128k tokens.
 - Allowed network egress: [FILL: youtube.com / googlevideo.com / the speech model
   source from §0]. Nothing else.
 - Speech model source: the package ships with a Hugging Face default base URL
@@ -220,7 +220,7 @@ instead of silently substituting a weaker behaviour.
 ---
 
 ## Admin checklist before handing this over
-1. Fill the three `[FILL]` items (OS, DeepSeek base URL, allowed egress).
+1. Fill the three `[FILL]` items (OS, LLM base URL, allowed egress).
 2. If your chrome/edge policy forbids Apple Events JS, delete §4 step 3 and §4 step 5 and
    tell the agent so — it must then ship the degraded 3-path version.
 3. Decide the speech-model source and write it into the `[FILL]` on the egress line:
