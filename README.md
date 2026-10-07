@@ -10,7 +10,7 @@ result stays reviewable and auditable.
 
 | Prompt | What it builds |
 |---|---|
-| [`prompts/youtube-summary.md`](prompts/youtube-summary.md) | A Pi package that turns a YouTube URL into a summary of the video's full transcript. Five-step retrieval ladder (cache → public captions → browser transcript panel → audio download + local STT → browser audio capture), JSONL subprocess protocol, and tests that enforce its own security claims. |
+| [`prompts/youtube-summary.md`](prompts/youtube-summary.md) | A Pi package that turns a YouTube URL into a summary of the video's full transcript. Six-rung retrieval ladder (probe → cache → public captions → browser transcript panel → audio download + local STT → browser audio capture), JSONL subprocess protocol, tests that enforce its own security claims, and §12 deployment profiles for personal, restricted, and locked-down machines. |
 | [`prompts/pi-vim.md`](prompts/pi-vim.md) | Vim-style modal editing for Pi's prompt editor, as an extension that decorates the editor Pi already has. Splits a pure, unit-testable NORMAL-mode engine from a thin controller that drives the real editor through its TS-accessible ABI, preserving folded pastes, undo grouping, and dot-repeat. |
 | [`prompts/claude-code-theme.md`](prompts/claude-code-theme.md) | A Claude Code-style terminal presentation for Pi: a theme file plus a presentation-only extension adding an animated mascot header, a `❯` prompt, a footer status bar, and an effort label on the editor border that yields to another extension's editor. |
 
@@ -26,6 +26,11 @@ They follow a few rules that are worth keeping when adding new ones:
   assertion that the injected JavaScript contains no `document.cookie` is not.
 - **No silent degradation.** Anything unsupported must fail with a stable error
   code and a hint, never fall back to a weaker behaviour without saying so.
+- **One prompt, both laptops.** Environment differences — TLS interception, blocked
+  package indexes, rate-limited egress, disabled browser automation, model source —
+  are handled by runtime capability detection and `PI_*` variables, so the same prompt
+  serves an unrestricted personal machine and a locked-down corporate one. Prompts
+  never ask the reader to delete sections or keep a private fork per machine.
 - **Explicit `[FILL]` slots.** Environment-specific values (OS, endpoints,
   allowed egress) are left as placeholders so the same spec adapts to different
   deployments instead of guessing.
